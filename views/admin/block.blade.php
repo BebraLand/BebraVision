@@ -177,5 +177,13 @@
             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
             @enderror
         </div>
+        <div class=" w-100">
+            <label class="form-label m-0" for="block-discord-knownbots">Known Bots (one per line)</label>
+            <textarea class="form-control @error('block-discord-knownbots') is-invalid @enderror" id="block-discord-knownbots" name="block[discord][knownbots]" rows="8" aria-describedby="block-discord-knownbots-Label" placeholder="Enter bot names, one per line">{{old('block-discord-knownbots', config('theme.block.discord.knownbots'))}}</textarea>
+            @error('block-discord-knownbots')
+            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+            @enderror
+            <small class="form-text text-muted">Enter bot names that should be excluded from the member list, one per line.</small>
+        </div>
     </div>
 </fieldset>
