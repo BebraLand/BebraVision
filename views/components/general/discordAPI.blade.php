@@ -31,33 +31,36 @@
                     @if(!$onlyCounter)
                         // Exclude bots from the member list
                         // The Discord embed API does not provide a 'bot' property, so we filter by known bot names or if username contains 'bot'
-                        const knownBotsConfig = `{{theme_config('block.discord.knownbots', '')}}`;
-                        const knownBots = knownBotsConfig.split('\n').map(bot => bot.trim()).filter(bot => bot.length > 0);
-
+                        let enableKnownBotsFilter = {{ config('theme.knownBots.enabled') ? 'true' : 'false' }};
+                        const knownBots = {!! json_encode(config('theme.knownBots.list') ?? []) !!};
+                        
+                        // Priority users configuration
+                        let enablePriorityUsers = {{ config('theme.priorityUsers.enabled') ? 'true' : 'false' }};
+                        const priorityUsers = {!! json_encode(config('theme.priorityUsers.list') ?? []) !!};
+                        
                         // Separate priority users and other members
-                        const priorityUsersConfig = `{{theme_config('block.discord.priorityuser', '')}}`;
-                        const priorityUsers = priorityUsersConfig.split('\n').map(user => user.trim()).filter(user => user.length > 0);
-                        
-                        // Filter priority members in the order they were configured
-                        const priorityMembers = [];
-                        priorityUsers.forEach(priorityUser => {
-                            const foundMembers = d.members.filter(m =>
-                                m.username === priorityUser &&
-                                !knownBots.includes(m.username) &&
+                        const priorityMembers = enablePriorityUsers ? d.members
+                            .filter(m =>
+                                priorityUsers.includes(m.username) &&
+                                !(enableKnownBotsFilter && knownBots.includes(m.username)) &&
                                 !/bot/i.test(m.username)
-                            );
-                            priorityMembers.push(...foundMembers);
-                        });
-                        
+                            )
+                            .sort((a, b) => {
+                                // Sort by priority order (index in priorityUsers array)
+                                const aIndex = priorityUsers.indexOf(a.username);
+                                const bIndex = priorityUsers.indexOf(b.username);
+                                return aIndex - bIndex;
+                            }) : [];
+                            
                         const otherMembers = d.members
                             .filter(m =>
-                                !priorityUsers.includes(m.username) &&
-                                !knownBots.includes(m.username) &&
+                                !(enablePriorityUsers && priorityUsers.includes(m.username)) &&
+                                !(enableKnownBotsFilter && knownBots.includes(m.username)) &&
                                 !/bot/i.test(m.username)
                             )
                             .sort((a,b)=> (a.status>b.status)*2-1);
-
-                        // Insert priority users first (in configured order), then others
+                        
+                        // Insert priority users first, then others
                         [...priorityMembers, ...otherMembers].forEach(function (m) {
                             discordList.insertAdjacentHTML('beforeend', `
                                 <li class="d-flex align-items-center gap-1 my-2">
