@@ -10,7 +10,7 @@
             name="knownBots[list]" 
             rows="8"
             placeholder="placehoder"
-            aria-describedby="knownBots-list-help">{{ old('knownBots-list', is_array(config('theme.knownBots.list')) ? implode("\n", config('theme.knownBots.list')) : (config('theme.knownBots.list') ?? "BebraLand | Carl-bot\nBebraLand | FlaviBot\nBebraLand | EazyAutodelete\nBebraLand | Appy\nBebraLand | InviteLogger\nBebraLand TechnoMagic\nBebraLand")) }}</textarea>
+            aria-describedby="knownBots-list-help">{{ old('knownBots-list', is_array(config('theme.knownBots.list')) ? implode("\n", config('theme.knownBots.list')) : (config('theme.knownBots.list'))) }}</textarea>
         @error('knownBots-list')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror

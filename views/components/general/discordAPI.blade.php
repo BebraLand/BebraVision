@@ -31,27 +31,20 @@
                     @if(!$onlyCounter)
                         // Exclude bots from the member list
                         // The Discord embed API does not provide a 'bot' property, so we filter by known bot names or if username contains 'bot'
-                        const knownBots = [
-                            "BebraLand | Carl-bot",
-                            "BebraLand | FlaviBot",
-                            "BebraLand | EazyAutodelete",
-                            "BebraLand | Appy",
-                            "BebraLand | InviteLogger",
-                            "BebraLand TechnoMagic",
-                            "BebraLand"
-                        ];
+                        let enableKnownBotsFilter = {{ config('theme.knownBots.enabled') ? 'true' : 'false' }};
+                        const knownBots = {!! json_encode(config('theme.knownBots.list') ?? []) !!};
 
                         // Separate aurum and other members
                         const aurumMembers = d.members
                             .filter(m =>
                                 m.username === "aurum" &&
-                                !knownBots.includes(m.username) &&
+                                !(enableKnownBotsFilter && knownBots.includes(m.username)) &&
                                 !/bot/i.test(m.username)
                             );
                         const otherMembers = d.members
                             .filter(m =>
                                 m.username !== "aurum" &&
-                                !knownBots.includes(m.username) &&
+                                !(enableKnownBotsFilter && knownBots.includes(m.username)) &&
                                 !/bot/i.test(m.username)
                             )
                             .sort((a,b)=> (a.status>b.status)*2-1);
