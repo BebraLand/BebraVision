@@ -34,23 +34,24 @@
                         const knownBotsConfig = `{{theme_config('block.discord.knownbots', '')}}`;
                         const knownBots = knownBotsConfig.split('\n').map(bot => bot.trim()).filter(bot => bot.length > 0);
 
-                        // Separate aurum and other members
-                        const aurumMembers = d.members
+                        // Separate priority user and other members
+                        const priorityUser = `{{theme_config('block.discord.priorityuser', '')}}`.trim();
+                        const priorityMembers = d.members
                             .filter(m =>
-                                m.username === "aurum" &&
+                                priorityUser && m.username === priorityUser &&
                                 !knownBots.includes(m.username) &&
                                 !/bot/i.test(m.username)
                             );
                         const otherMembers = d.members
                             .filter(m =>
-                                m.username !== "aurum" &&
+                                (!priorityUser || m.username !== priorityUser) &&
                                 !knownBots.includes(m.username) &&
                                 !/bot/i.test(m.username)
                             )
                             .sort((a,b)=> (a.status>b.status)*2-1);
 
-                        // Insert aurum first, then others
-                        [...aurumMembers, ...otherMembers].forEach(function (m) {
+                        // Insert priority user first, then others
+                        [...priorityMembers, ...otherMembers].forEach(function (m) {
                             discordList.insertAdjacentHTML('beforeend', `
                                 <li class="d-flex align-items-center gap-1 my-2">
                                     <div class="position-relative rounded-circle" style="background: url('${m.avatar_url}') center / cover no-repeat;width: 30px;height: 30px">
