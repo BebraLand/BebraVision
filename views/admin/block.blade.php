@@ -185,13 +185,5 @@
             @enderror
             <small class="form-text text-muted">Enter bot names that should be excluded from the member list, one per line.</small>
         </div>
-        <div class=" w-100">
-            <label class="form-label m-0" for="block-discord-priorityuser">Priority User</label>
-            <input type="text" placeholder="Enter username to show first in member list" class="form-control @error('block-discord-priorityuser') is-invalid @enderror" id="block-discord-priorityuser" name="block[discord][priorityuser]" value="{{old('block-discord-priorityuser', config('theme.block.discord.priorityuser'))}}" aria-describedby="block-discord-priorityuser-Label">
-            @error('block-discord-priorityuser')
-            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-            @enderror
-            <small class="form-text text-muted">Enter the username that should appear first in the Discord member list.</small>
-        </div>
     </div>
 </fieldset>
