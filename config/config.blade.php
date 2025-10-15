@@ -1,17 +1,11 @@
 @extends('admin.layouts.admin')
-@section('title', 'Theme Flauw')
+@section('title', 'BebraVision')
 @php ($azuriomImages = \Azuriom\Models\Image::all())
 
 @section('content')
     <div class="col-12 mb-3 d-flex flex-column gap-2">
         <div>
-            <a href="https://discord.gg/Gh2yBxUWvV" target="_blank" class="btn btn-primary fw-bold rounded-4 text-uppercase px-3"><i class="bi bi-discord"></i> {{trans('theme::admin.config.our_discord')}}</a>
-        </div>
-        <div>
-            <button type="button" class="btn btn-success fw-bold rounded-4 text-uppercase px-3" data-bs-toggle="modal" data-bs-target="#donationModal"><i class="bi bi-heart-fill me-1"></i>{{trans('theme::admin.config.don')}}</button>
-        </div>
-        <div>
-           <a href="https://www.serveurliste.com" target="_blank" class="btn btn-warning fw-bold rounded-4 text-uppercase px-3"><i class="bi bi-search me-1"></i>{{trans('theme::admin.config.serveurliste')}}</a>
+            <a href="https://discord.com/invite/gVmrffxDMS" target="_blank" class="btn btn-primary fw-bold rounded-4 text-uppercase px-3"><i class="bi bi-discord"></i> {{trans('theme::admin.config.our_discord')}}</a>
         </div>
         <hr>
         <div>
@@ -23,20 +17,6 @@
     <div>
         <form class="w-100" action="{{ route('admin.themes.config', $theme) }}" method="POST">
             @csrf
-
-            <div class="p-2 d-flex flex-column gap-3">
-                <div class="row container gap-md-3">
-                    <div class="col-lg-5 alert alert-warning">
-                        <p class=" mb-2">{{trans('theme::admin.active_premium')}}</p>
-                        @include('admin.components.forms.url', [
-                            'id' => 'general[serveurliste][link]',
-                            'name' => trans('theme::admin.link_of_your_server_on'),
-                            'placeholder' => "https://www.serveurliste.com/minecraft/your_server",
-                            'pattern' => '^https:\/\/www\.serveurliste\.com\/.*'
-                        ])
-                    </div>
-                </div>
-            </div>
 
             <div class="card bg-secondary bg-opacity-10">
                 <div class="card-header bg-secondary bg-opacity-25">

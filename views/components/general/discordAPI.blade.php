@@ -5,7 +5,7 @@
         "use strict";
 
         function discordAPI() {
-            let discord_key = "{{theme_config('block.discord.id') ?? '1025845189115400303'}}";
+            let discord_key = "{{theme_config('block.discord.id') ?? 'placeholder'}}";
             let url = 'https://discordapp.com/api/guilds/' + discord_key + '/embed.json';
             @if(!$onlyCounter)
                 let discordList = document.querySelector('.discord-list');

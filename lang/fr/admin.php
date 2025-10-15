@@ -38,7 +38,6 @@ return [
     'join' => 'Rejoindre',
     'amount_to_show' => 'Montant à afficher',
     'online_variable' => 'Utilisez {online} dans votre texte pour placer le nombre de connecté comme bon vous semble!',
-    'active_premium' => 'Activez le mode premium ⭐',
     'link_of_your_server_on' => 'Lien de votre serveur sur <a href="https://www.serveurliste.com/" target="_blank" rel="noopener, nofollow">ServeurListe.com</a>',
     'font' => [
         'title' => 'Police customisé',

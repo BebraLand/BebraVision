@@ -39,7 +39,6 @@ return [
     'join' => 'Join',
     'amount_to_show' => 'Amount to show',
     'online_variable' => 'Use {online} in your text to place the number of connections as you wish!',
-    'active_premium' => 'Activate premium mode ⭐',
     'link_of_your_server_on' => 'Link to your server on <a href="https://www.serveurliste.com/" target="_blank" rel="noopener, nofollow">ServeurListe.com</a>',
     'font' => [
         'title' => 'Custom Font',

@@ -150,7 +150,7 @@
     </div>
     <div class=" w-100">
         <label class="form-label m-0" for="block-discord-id">ID {{trans('theme::admin.discord')}}</label>
-        <input type="text" placeholder="1025845189115400303" class="form-control @error('block-discord-id') is-invalid @enderror" id="block-discord-id" name="block[discord][id]" value="{{old('block-discord-id', config('theme.block.discord.id'))}}" aria-describedby="block-discord-id-Label">
+        <input type="text" placeholder="placeholder" class="form-control @error('block-discord-id') is-invalid @enderror" id="block-discord-id" name="block[discord][id]" value="{{old('block-discord-id', config('theme.block.discord.id'))}}" aria-describedby="block-discord-id-Label">
         @error('block-discord-id')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
@@ -158,7 +158,7 @@
     <div id="discord-custom" class="{{theme_config('block.discord.type') == 'iframe' ? 'd-none':''}}">
         <div class=" w-100">
             <label class="form-label m-0" for="block-discord-url">{{trans('theme::admin.url')}}</label>
-            <input type="url" placeholder="https://discord.gg/Gh2yBxUWvV" class="form-control @error('block-discord-url') is-invalid @enderror" id="block-discord-url" name="block[discord][url]" value="{{old('block-discord-url', config('theme.block.discord.url'))}}" aria-describedby="block-discord-url-Label">
+            <input type="url" placeholder="placeholder" class="form-control @error('block-discord-url') is-invalid @enderror" id="block-discord-url" name="block[discord][url]" value="{{old('block-discord-url', config('theme.block.discord.url'))}}" aria-describedby="block-discord-url-Label">
             @error('block-discord-url')
             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
             @enderror
