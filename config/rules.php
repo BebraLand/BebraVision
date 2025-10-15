@@ -9,4 +9,5 @@ return [
     'event' => ['nullable', 'array'],
     'block' => ['nullable', 'array'],
     'knownBots' => ['nullable', 'array'],
+    'priorityUsers' => ['nullable', 'array'],
 ];

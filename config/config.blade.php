@@ -84,6 +84,15 @@
                     @include('admin.knownBots')
                 </div>
             </div>
+            <div class="card bg-secondary bg-opacity-10">
+                <div class="card-header bg-secondary bg-opacity-25">
+                    <h2 class="fw-bold fs-3 m-0 text-uppercase">Priority Users</h2>
+                    <small class="fs-5 fst-italic"><i class="bi bi-info-circle"></i> Configure priority users to display first in Discord member list</small>
+                </div>
+                <div class="card-body d-flex flex-column gap-3">
+                    @include('admin.priorityUsers')
+                </div>
+            </div>
             <div class="d-flex justify-content-end m-2">
                 <button type="submit" class="btn btn-success align-self-end">
                     <i class="bi bi-save"></i> {{ trans('messages.actions.save') }}
