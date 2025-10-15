@@ -48,7 +48,6 @@
         </div>
         <div class="text-center text-white-50 mb-4">
             @if(setting('copyright')) <p class="m-0">{{ setting('copyright') }}</p> @endif
-            <p class="m-0"><span title="Version {{$version_theme['version']}}">{{trans('theme::theme.footer.copyright')}} <a  href="https://discord.gg/Gh2yBxUWvV" target="_blank" rel="noopener noreferrer">Dixept</a></span> | @lang('messages.copyright') </p>
         </div>
     </div>
 </div>
