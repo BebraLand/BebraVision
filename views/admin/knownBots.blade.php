@@ -20,10 +20,11 @@
     </div>
     
     <div class="form-check p-0">
+        <input type="hidden" name="knownBots[enabled]" value="0">
         <div class="switcher">
             <small class="fw-bold fs-5">Enable Known Bots Feature</small>
             <label for="knownBots-enabled">
-                <input type="checkbox" id="knownBots-enabled" name="knownBots[enabled]" @if(config('theme.knownBots.enabled', true)) checked @endif @error('knownBots-enabled') is-invalid @enderror/>
+                <input type="checkbox" id="knownBots-enabled" name="knownBots[enabled]" value="1" @if(config('theme.knownBots.enabled')) checked @endif @error('knownBots-enabled') is-invalid @enderror/>
                 <span><small></small></span>
             </label>
         </div>

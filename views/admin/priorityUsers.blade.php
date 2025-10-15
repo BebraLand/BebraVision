@@ -20,10 +20,11 @@
     </div>
     
     <div class="form-check p-0">
+        <input type="hidden" name="priorityUsers[enabled]" value="0">
         <div class="switcher">
             <small class="fw-bold fs-5">Enable Priority Users Feature</small>
             <label for="priorityUsers-enabled">
-                <input type="checkbox" id="priorityUsers-enabled" name="priorityUsers[enabled]" @if(config('theme.priorityUsers.enabled', true)) checked @endif @error('priorityUsers-enabled') is-invalid @enderror/>
+                <input type="checkbox" id="priorityUsers-enabled" name="priorityUsers[enabled]" value="1" @if(config('theme.priorityUsers.enabled')) checked @endif @error('priorityUsers-enabled') is-invalid @enderror/>
                 <span><small></small></span>
             </label>
         </div>
