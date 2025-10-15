@@ -8,4 +8,5 @@ return [
     'footer' => ['nullable', 'array'],
     'event' => ['nullable', 'array'],
     'block' => ['nullable', 'array'],
+    'knownBots' => ['nullable', 'array'],
 ];
