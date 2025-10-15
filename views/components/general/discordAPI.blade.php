@@ -34,23 +34,30 @@
                         const knownBotsConfig = `{{theme_config('block.discord.knownbots', '')}}`;
                         const knownBots = knownBotsConfig.split('\n').map(bot => bot.trim()).filter(bot => bot.length > 0);
 
-                        // Separate priority user and other members
-                        const priorityUser = `{{theme_config('block.discord.priorityuser', '')}}`.trim();
-                        const priorityMembers = d.members
-                            .filter(m =>
-                                priorityUser && m.username === priorityUser &&
+                        // Separate priority users and other members
+                        const priorityUsersConfig = `{{theme_config('block.discord.priorityuser', '')}}`;
+                        const priorityUsers = priorityUsersConfig.split('\n').map(user => user.trim()).filter(user => user.length > 0);
+                        
+                        // Filter priority members in the order they were configured
+                        const priorityMembers = [];
+                        priorityUsers.forEach(priorityUser => {
+                            const foundMembers = d.members.filter(m =>
+                                m.username === priorityUser &&
                                 !knownBots.includes(m.username) &&
                                 !/bot/i.test(m.username)
                             );
+                            priorityMembers.push(...foundMembers);
+                        });
+                        
                         const otherMembers = d.members
                             .filter(m =>
-                                (!priorityUser || m.username !== priorityUser) &&
+                                !priorityUsers.includes(m.username) &&
                                 !knownBots.includes(m.username) &&
                                 !/bot/i.test(m.username)
                             )
                             .sort((a,b)=> (a.status>b.status)*2-1);
 
-                        // Insert priority user first, then others
+                        // Insert priority users first (in configured order), then others
                         [...priorityMembers, ...otherMembers].forEach(function (m) {
                             discordList.insertAdjacentHTML('beforeend', `
                                 <li class="d-flex align-items-center gap-1 my-2">
