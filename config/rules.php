@@ -8,6 +8,4 @@ return [
     'footer' => ['nullable', 'array'],
     'event' => ['nullable', 'array'],
     'block' => ['nullable', 'array'],
-    'block.discord.knownbots' => ['nullable', 'string'],
-    'block.discord.priorityuser' => ['nullable', 'string'],
 ];
