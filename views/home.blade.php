@@ -130,7 +130,7 @@
             @endif
 
             <div class="row py-8">
-                <div class="col-md-3 p-0">
+                <div class="col-md-3 p-0 order-2 order-md-1">
                     @if(!theme_config('block.button.toggle'))
                         <div class="d-flex justify-content-center bg-dark text-center border-bottom-0 rounded-start py-5 mb-3 mx-md-0 mx-2">
                             <a href="{{theme_config('block.button.url') ?? '/shop'}}" @if(theme_config('block.button.blank') && theme_config('block.button.blank') == 'on') target="_blank" @endif class="d-flex justify-content-center gap-1 btn btn-secondary px-3 py-2 fs-3 text-decoration-none rounded fw-bolder text-nowrap"><i class="d-none d-lg-block {{theme_config('block.button.icon') ?? 'bi bi-arrow-right'}}"></i> {{theme_config('block.button.text') ?? 'Shop'}}</a>
@@ -161,7 +161,7 @@
                     </div>
                     @endif
                 </div>
-                <div class="col-md-9 p-0">
+                <div class="col-md-9 p-0 order-1 order-md-2">
                     @if(! $posts->isEmpty())
                         <div class="bg-dark text-center py-3 border-bottom-0 rounded-end">
                             <h2 class="m-0 text-white text-uppercase">{{theme_config('block.news.title') ?? trans('messages.news') }}</h2>
