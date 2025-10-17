@@ -5,48 +5,56 @@
 
         @if(!theme_config('hero.appHide.toggle'))
         <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-4">
-            @if(!theme_config('hero.server.toggle'))
-            <div data-clipboard-text="{{theme_config('hero.server.ip') ?? 'play.dixept.fr'}}" class="copy_ip hero-small-box d-flex align-items-center gap-3 bg-dark bg-opacity-25 p-3" style="cursor : pointer;">
-                <div>
-                    <h2 class="m-0 fs-5 server_count">
-                        @if($servers->where('home_display')->count() > 1)
-                                @php($totalPlayers = 0)
-                            @foreach($servers->where('home_display') as $server)
-                                @php($totalPlayers += $server->getOnlinePlayers())
-                            @endforeach
-                        @endif
-                        @if($servers->where('home_display')->count() > 0)
-                            <span class="server_count_span">{{$totalPlayers??$server->getOnlinePlayers()}}</span> {{theme_config('hero.server.text') ?? 'PLAYERS ONLINE'}}
-                        @else
-                            SERVER OFFLINE
-                        @endif
-                    </h2>
-                    <div class="position-relative">
-                        <p class="ip_address m-0">{{theme_config('hero.server.ip') ?? 'play.dixept.fr'}}</p>
-                        <span class="ip_copy position-absolute text-nowrap bg-secondary rounded-3 mx-5 px-2 py-1 text-center d-none">{{theme_config('hero.server.textcopied') ?? 'IP COPIED!'}}</span>
+            @php
+                $components = [
+                    config('theme.hero.arrangement.first', 'server'),
+                    config('theme.hero.arrangement.second', 'discord'), 
+                    config('theme.hero.arrangement.third', 'logo')
+                ];
+            @endphp
+            
+            @foreach($components as $component)
+                @if($component == 'server' && !theme_config('hero.server.toggle'))
+                    <div data-clipboard-text="{{theme_config('hero.server.ip') ?? 'play.dixept.fr'}}" class="copy_ip hero-small-box d-flex align-items-center gap-3 bg-dark bg-opacity-25 p-3" style="cursor : pointer;">
+                        <div>
+                            <h2 class="m-0 fs-5 server_count">
+                                @if($servers->where('home_display')->count() > 1)
+                                        @php($totalPlayers = 0)
+                                    @foreach($servers->where('home_display') as $server)
+                                        @php($totalPlayers += $server->getOnlinePlayers())
+                                    @endforeach
+                                @endif
+                                @if($servers->where('home_display')->count() > 0)
+                                    <span class="server_count_span">{{$totalPlayers??$server->getOnlinePlayers()}}</span> {{theme_config('hero.server.text') ?? 'PLAYERS ONLINE'}}
+                                @else
+                                    SERVER OFFLINE
+                                @endif
+                            </h2>
+                            <div class="position-relative">
+                                <p class="ip_address m-0">{{theme_config('hero.server.ip') ?? 'play.dixept.fr'}}</p>
+                                <span class="ip_copy position-absolute text-nowrap bg-secondary rounded-3 mx-5 px-2 py-1 text-center d-none">{{theme_config('hero.server.textcopied') ?? 'IP COPIED!'}}</span>
+                            </div>
+                        </div>
+                        <i class="{{theme_config('hero.server.icon') ?? 'bi bi-box-fill'}} fs-1"></i>
                     </div>
-                </div>
-                <i class="{{theme_config('hero.server.icon') ?? 'bi bi-box-fill'}} fs-1"></i>
-            </div>
-            @endif
-            @if(!theme_config('hero.logo.toggle'))
-            <a class="navbar-brand" href="{{ route('home') }}">
-                @if(setting('logo'))
-                    <img width="200" height="200" style="object-fit: contain;" src="{{ image_url(setting('logo')) }}" alt="Logo">
-                @else
-                    {{ site_name() }}
+                @elseif($component == 'logo' && !theme_config('hero.logo.toggle'))
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        @if(setting('logo'))
+                            <img width="200" height="200" style="object-fit: contain;" src="{{ image_url(setting('logo')) }}" alt="Logo">
+                        @else
+                            {{ site_name() }}
+                        @endif
+                    </a>
+                @elseif($component == 'discord' && !theme_config('hero.discord.toggle'))
+                    <a href="{{theme_config('hero.discord.url') ?? '#'}}" target="_blank" class="hero-small-box d-flex align-items-center gap-3 bg-dark bg-opacity-25 p-3 text-decoration-none text-white">
+                        <i class="{{theme_config('hero.discord.icon') ?? 'bi bi-discord'}} fs-1"></i>
+                        <div>
+                            <h2 class="m-0 fs-5 discord-list_count"><span>{{theme_config('hero.discord.text') ?? 'Discord'}}</span></h2>
+                            <p class="m-0">{{theme_config('hero.discord.url') ? str_replace(['https://', 'http://', 'discord.gg'], ['','','DISCORD.GG'], theme_config('hero.discord.url')):'DISCORD.GG/placeholder'}}</p>
+                        </div>
+                    </a>
                 @endif
-            </a>
-            @endif
-            @if(!theme_config('hero.discord.toggle'))
-            <a href="{{theme_config('hero.discord.url') ?? 'https://discord.gg/placeholder'}}" target="_blank" class="hero-small-box d-flex align-items-center gap-3 bg-dark bg-opacity-25 p-3 text-white text-decoration-none">
-                <i class="{{theme_config('hero.discord.icon') ?? 'bi bi-discord'}} fs-1"></i>
-                <div>
-                    <h2 class="m-0 fs-5 discord-list_count"><span>{{theme_config('hero.discord.text') ?? 'Discord'}}</span></h2>
-                    <p class="m-0">{{theme_config('hero.discord.url') ? str_replace(['https://', 'http://', 'discord.gg'], ['','','DISCORD.GG'], theme_config('hero.discord.url')):'DISCORD.GG/placeholder'}}</p>
-                </div>
-            </a>
-            @endif
+            @endforeach
 
         </div>
             @endif
