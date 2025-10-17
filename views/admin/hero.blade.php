@@ -50,6 +50,18 @@
             <div>
                 <i>{{trans('theme::admin.online_variable')}}</i>
             </div>
+            <div class="form-check p-0">
+                <div class="switcher">
+                    <small class="fw-bold fs-5">{{trans('theme::admin.dont_show')}}</small>
+                    <label for="hero-server-toggle">
+                        <input type="checkbox" id="hero-server-toggle" name="hero[server][toggle]" @if(config('theme.hero.server.toggle')) checked @endif @error('hero-server-toggle') is-invalid @enderror/>
+                        <span><small></small></span>
+                    </label>
+                </div>
+                @error('hero-server-toggle')
+                <small class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></small>
+                @enderror
+            </div>
         </fieldset>
         <fieldset class="d-flex flex-column gap-3 border p-2 w-100">
             <legend class="float-none w-auto p-2 py-0 bg-dark text-white text-lg">{{trans('theme::admin.discord')}}</legend>
@@ -79,6 +91,33 @@
             <div>
                 <i>{{trans('theme::admin.online_variable')}}</i><strong class="{{theme_config('block.discord.type') == 'custom' ? 'd-none':''}} text-info ms-1">{{trans('theme::admin.form.hero.discord_iframe')}}</strong><br/>
                 <i class="fw-bold">{{trans('theme::admin.form.hero.discord_show_online')}}</i>
+            </div>
+            <div class="form-check p-0">
+                <div class="switcher">
+                    <small class="fw-bold fs-5">{{trans('theme::admin.dont_show')}}</small>
+                    <label for="hero-discord-toggle">
+                        <input type="checkbox" id="hero-discord-toggle" name="hero[discord][toggle]" @if(config('theme.hero.discord.toggle')) checked @endif @error('hero-discord-toggle') is-invalid @enderror/>
+                        <span><small></small></span>
+                    </label>
+                </div>
+                @error('hero-discord-toggle')
+                <small class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></small>
+                @enderror
+            </div>
+        </fieldset>
+        <fieldset class="d-flex flex-column gap-3 border p-2 w-100">
+            <legend class="float-none w-auto p-2 py-0 bg-dark text-white text-lg">Logo</legend>
+            <div class="form-check p-0">
+                <div class="switcher">
+                    <small class="fw-bold fs-5">{{trans('theme::admin.dont_show')}}</small>
+                    <label for="hero-logo-toggle">
+                        <input type="checkbox" id="hero-logo-toggle" name="hero[logo][toggle]" @if(config('theme.hero.logo.toggle')) checked @endif @error('hero-logo-toggle') is-invalid @enderror/>
+                        <span><small></small></span>
+                    </label>
+                </div>
+                @error('hero-logo-toggle')
+                <small class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></small>
+                @enderror
             </div>
         </fieldset>
 

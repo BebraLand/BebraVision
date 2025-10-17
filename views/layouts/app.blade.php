@@ -5,6 +5,7 @@
 
         @if(!theme_config('hero.appHide.toggle'))
         <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-4">
+            @if(!theme_config('hero.server.toggle'))
             <div data-clipboard-text="{{theme_config('hero.server.ip') ?? 'play.dixept.fr'}}" class="copy_ip hero-small-box d-flex align-items-center gap-3 bg-dark bg-opacity-25 p-3" style="cursor : pointer;">
                 <div>
                     <h2 class="m-0 fs-5 server_count">
@@ -27,6 +28,8 @@
                 </div>
                 <i class="{{theme_config('hero.server.icon') ?? 'bi bi-box-fill'}} fs-1"></i>
             </div>
+            @endif
+            @if(!theme_config('hero.logo.toggle'))
             <a class="navbar-brand" href="{{ route('home') }}">
                 @if(setting('logo'))
                     <img width="200" height="200" style="object-fit: contain;" src="{{ image_url(setting('logo')) }}" alt="Logo">
@@ -34,6 +37,8 @@
                     {{ site_name() }}
                 @endif
             </a>
+            @endif
+            @if(!theme_config('hero.discord.toggle'))
             <a href="{{theme_config('hero.discord.url') ?? 'https://discord.gg/placeholder'}}" target="_blank" class="hero-small-box d-flex align-items-center gap-3 bg-dark bg-opacity-25 p-3 text-white text-decoration-none">
                 <i class="{{theme_config('hero.discord.icon') ?? 'bi bi-discord'}} fs-1"></i>
                 <div>
@@ -41,6 +46,7 @@
                     <p class="m-0">{{theme_config('hero.discord.url') ? str_replace(['https://', 'http://', 'discord.gg'], ['','','DISCORD.GG'], theme_config('hero.discord.url')):'DISCORD.GG/placeholder'}}</p>
                 </div>
             </a>
+            @endif
 
         </div>
             @endif
