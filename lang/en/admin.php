@@ -72,4 +72,10 @@ return [
         'donation' => 'We are honored by your support and greatly appreciate your generous contribution, Dixept ❤.',
     ],
     'disableInfosHero' => 'Hide discord and server on pages other than home',
+    'arrangement' => 'Arrangement',
+    'component_order' => 'Component Order',
+    'first_component' => 'First Component',
+    'second_component' => 'Second Component', 
+    'third_component' => 'Third Component',
+    'arrangement_description' => 'Choose the order in which Server, Discord, and Logo components appear in the hero section.',
 ];
