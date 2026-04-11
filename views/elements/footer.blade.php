@@ -12,7 +12,7 @@
                 <ul class="list-unstyled m-0 text-white-50">
                     @if(theme_config('footer.center.link') != null)
                         @foreach(theme_config('footer.center.link') as $link)
-                            <li class="py-1"><a class="text-white opacity-50 text-decoration-none" href="{{$link['url'] ?? '#'}}"><i class="{{$link['icon'] ?? 'bi bi-house'}} me-2"></i>{{$link['text'] ?? 'Accueil'}}</a></li>
+                            <li class="py-1"><a class="text-white opacity-50 text-decoration-none" href="{{$link['url'] ?? '#'}}" target="_blank" rel="noopener noreferrer"><i class="{{$link['icon'] ?? 'bi bi-house'}} me-2"></i>{{$link['text'] ?? 'Accueil'}}</a></li>
                         @endforeach
                     @else
                         <li class="py-1"><a class="text-white opacity-50 text-decoration-none" href="https://www.serveurliste.com" target="_blank"><i class="bi bi-search me-2"></i>ServeurListe</a></li>
@@ -28,7 +28,7 @@
                     <p class="text-white-50">Votez pour {{site_name()}} sur <a href="@if(!theme_config('footer.right.serveurliste.link')) https://www.serveurliste.com @else {{theme_config('footer.right.serveurliste.link')}} @endif" target="_blank">serveurliste.com</a></p>
                 @endif
                 <div>
-                    <a href="{{theme_config('footer.right.url') ?? '/shop'}}" class="btn btn-primary">{{theme_config('footer.right.text') ?? 'Shop'}}</a>
+                    <a href="{{theme_config('footer.right.url') ?? '/shop'}}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">{{theme_config('footer.right.text') ?? 'Shop'}}</a>
                 </div>
             </div>
         </div>
