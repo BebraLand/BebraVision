@@ -37,6 +37,10 @@ return [
     'ip_when_copied' => 'Текст при копировании IP',
     'online' => 'В сети',
     'join' => 'Присоединиться',
+    'discord_display_mode' => 'Режим подзаголовка Discord',
+    'discord_display_text' => 'Пользовательский текст',
+    'discord_display_url' => 'Показывать URL Discord',
+    'discord_subtitle' => 'Подзаголовок Discord',
     'amount_to_show' => 'Количество для отображения',
     'online_variable' => 'Используйте {online} в тексте, чтобы разместить число подключений по вашему желанию!',
     'link_of_your_server_on' => 'Ссылка на ваш сервер на <a href="https://www.serveurliste.com/" target="_blank" rel="noopener, nofollow">ServeurListe.com</a>',
@@ -50,7 +54,8 @@ return [
     'form' => [
         'hero' => [
             'discord_show_online' => 'Укажите ваш Discord ID ниже, чтобы отображать количество подключений.',
-            'discord_iframe' => 'Извините, вы можете использовать {online}, только если используете настройки Discord iframe.'
+            'discord_iframe' => 'Извините, вы можете использовать {online}, только если используете настройки Discord iframe.',
+            'discord_display_help' => 'Выберите, должен ли подзаголовок показывать пользовательский текст или URL Discord.'
         ],
         'colors' => [
             'desc' => 'Установите случайные цвета, чтобы увидеть, как они меняются',

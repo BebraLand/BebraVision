@@ -131,6 +131,27 @@
                     @enderror
                 </div>
             </div>
+            <div class="d-flex gap-1">
+                <div class="w-100">
+                    <label class="form-label m-0" for="hero-discord-display">{{trans('theme::admin.discord_display_mode')}}</label>
+                    <select class="form-select @error('hero-discord-display') is-invalid @enderror" id="hero-discord-display" name="hero[discord][display]">
+                        <option value="text" @if(old('hero-discord-display', config('theme.hero.discord.display', 'text')) == 'text') selected @endif>{{trans('theme::admin.discord_display_text')}}</option>
+                        <option value="url" @if(old('hero-discord-display', config('theme.hero.discord.display', 'text')) == 'url') selected @endif>{{trans('theme::admin.discord_display_url')}}</option>
+                    </select>
+                    @error('hero-discord-display')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+                <div class="w-100">
+                    @php($discordSubtitleDefault = (config('theme.hero.discord.subtitle') && config('theme.hero.discord.subtitle') !== 'theme::theme.hero.discord_subtitle') ? config('theme.hero.discord.subtitle') : trans('theme::theme.hero.discord_subtitle'))
+                    <label class="form-label m-0" for="hero-discord-subtitle">{{trans('theme::admin.discord_subtitle')}}</label>
+                    <input type="text" class="form-control @error('hero-discord-subtitle') is-invalid @enderror" id="hero-discord-subtitle" name="hero[discord][subtitle]" value="{{old('hero-discord-subtitle', $discordSubtitleDefault)}}" aria-describedby="hero-discord-subtitle-Label">
+                    @error('hero-discord-subtitle')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+            </div>
+            <small class="text-muted">{{trans('theme::admin.form.hero.discord_display_help')}}</small>
             <div>
                 <i>{{trans('theme::admin.online_variable')}}</i><strong class="{{theme_config('block.discord.type') == 'custom' ? 'd-none':''}} text-info ms-1">{{trans('theme::admin.form.hero.discord_iframe')}}</strong><br/>
                 <i class="fw-bold">{{trans('theme::admin.form.hero.discord_show_online')}}</i>

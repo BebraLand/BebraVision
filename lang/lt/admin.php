@@ -37,6 +37,10 @@ return [
     'ip_when_copied' => 'Tekstas, kai IP nukopijuotas',
     'online' => 'Prisijungę',
     'join' => 'Prisijungti',
+    'discord_display_mode' => 'Discord paantraštės režimas',
+    'discord_display_text' => 'Pasirinktinis tekstas',
+    'discord_display_url' => 'Rodyti Discord URL',
+    'discord_subtitle' => 'Discord paantraštė',
     'amount_to_show' => 'Rodyti kiekį',
     'online_variable' => 'Naudokite {online} tekste, kad parodytumėte prisijungimų skaičių!',
     'link_of_your_server_on' => 'Nuoroda į jūsų serverį <a href="https://www.serveurliste.com/" target="_blank" rel="noopener, nofollow">ServeurListe.com</a>',
@@ -50,7 +54,8 @@ return [
     'form' => [
         'hero' => [
             'discord_show_online' => 'Įveskite savo Discord ID žemiau, kad parodytumėte prisijungimų skaičių.',
-            'discord_iframe' => 'Atsiprašome, {online} galite naudoti tik su Discord iframe nustatymais.'
+            'discord_iframe' => 'Atsiprašome, {online} galite naudoti tik su Discord iframe nustatymais.',
+            'discord_display_help' => 'Pasirinkite, ar paantraštėje rodyti pasirinktinį tekstą, ar Discord URL.'
         ],
         'colors' => [
             'desc' => 'Nustatykite atsitiktines spalvas, kad pamatytumėte, kaip jos keičiasi',

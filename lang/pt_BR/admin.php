@@ -34,12 +34,17 @@ return [
     'ip_when_copied' => 'Texto quando o copiar o IP',
     'online' => 'Online',
     'join' => 'Entrar',
+    'discord_display_mode' => 'Modo de subtitulo do Discord',
+    'discord_display_text' => 'Texto personalizado',
+    'discord_display_url' => 'Mostrar URL do Discord',
+    'discord_subtitle' => 'Subtitulo do Discord',
     'amount_to_show' => 'Quantidade a ser mostrada',
     'online_variable' => 'Use {online} em seu texto para colocar o número de conexões como desejar!',
     'form' => [
         'hero' => [
             'discord_show_online' => 'Configure seu ID do Discord abaixo para exibir o número de conexões que você tem.',
-            'discord_iframe' => 'Desculpe, você pode usar {online} para usar as configurações de iframe do Discord.'
+            'discord_iframe' => 'Desculpe, você pode usar {online} para usar as configurações de iframe do Discord.',
+            'discord_display_help' => 'Escolha se o subtitulo deve mostrar seu texto personalizado ou a URL do Discord.'
         ],
         'colors' => [
             'desc' => 'Coloque cores aleatórias para ter mais conhecimento das cores que mudam',

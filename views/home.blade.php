@@ -47,11 +47,20 @@
                         @endif
                     </a>
                 @elseif($component == 'discord' && !theme_config('hero.discord.toggle'))
+                    @php($discordDisplayMode = config('theme.hero.discord.display', 'text'))
+                    @php($discordSubtitle = theme_config('hero.discord.subtitle'))
+                    @if($discordSubtitle === 'theme::theme.hero.discord_subtitle')
+                        @php($discordSubtitle = trans('theme::theme.hero.discord_subtitle'))
+                    @endif
                     <a href="{{theme_config('hero.discord.url') ?? '#'}}" target="_blank" class="hero-small-box d-flex align-items-center gap-3 bg-dark bg-opacity-25 p-3 text-decoration-none text-white">
                         <i class="{{theme_config('hero.discord.icon') ?? 'bi bi-discord'}} fs-1"></i>
                         <div>
                             <h2 class="m-0 fs-5 discord-list_count"><span>{{theme_config('hero.discord.text') ?? 'Discord'}}</span></h2>
-                            <p class="m-0">{{theme_config('hero.discord.url') ? str_replace(['https://', 'http://', 'discord.gg'], ['','','DISCORD.GG'], theme_config('hero.discord.url')):'placeholder'}}</p>
+                            @if($discordDisplayMode === 'url')
+                                <p class="m-0">{{theme_config('hero.discord.url') ? str_replace(['https://', 'http://', 'discord.gg'], ['', '', 'DISCORD.GG'], theme_config('hero.discord.url')) : 'placeholder'}}</p>
+                            @else
+                                <p class="m-0">{{$discordSubtitle ?? trans('theme::theme.hero.discord_subtitle')}}</p>
+                            @endif
                         </div>
                     </a>
                 @endif
