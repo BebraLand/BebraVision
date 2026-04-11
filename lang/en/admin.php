@@ -37,6 +37,10 @@ return [
     'ip_when_copied' => 'Text when ip are copied',
     'online' => 'Online',
     'join' => 'Join',
+    'discord_display_mode' => 'Discord subtitle mode',
+    'discord_display_text' => 'Custom text',
+    'discord_display_url' => 'Show Discord URL',
+    'discord_subtitle' => 'Discord subtitle',
     'amount_to_show' => 'Amount to show',
     'online_variable' => 'Use {online} in your text to place the number of connections as you wish!',
     'link_of_your_server_on' => 'Link to your server on <a href="https://www.serveurliste.com/" target="_blank" rel="noopener, nofollow">ServeurListe.com</a>',
@@ -50,7 +54,8 @@ return [
     'form' => [
         'hero' => [
             'discord_show_online' => 'Set up your Discord ID below to display the number of connections you have.',
-            'discord_iframe' => 'Sorry you can use {online} you use discord iframe settings.'
+            'discord_iframe' => 'Sorry you can use {online} you use discord iframe settings.',
+            'discord_display_help' => 'Choose whether the subtitle shows your custom text or the Discord URL.'
         ],
         'colors' => [
             'desc' => 'Put random colors to have more knowledge of the colors that change',
@@ -72,4 +77,10 @@ return [
         'donation' => 'We are honored by your support and greatly appreciate your generous contribution, Dixept ❤.',
     ],
     'disableInfosHero' => 'Hide discord and server on pages other than home',
+    'arrangement' => 'Arrangement',
+    'component_order' => 'Component Order',
+    'first_component' => 'First Component',
+    'second_component' => 'Second Component', 
+    'third_component' => 'Third Component',
+    'arrangement_description' => 'Choose the order in which Server, Discord, and Logo components appear in the hero section.',
 ];

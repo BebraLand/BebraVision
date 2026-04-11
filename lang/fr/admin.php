@@ -36,6 +36,10 @@ return [
     'ip_when_copied' => 'Texte quand l\'ip est copié',
     'online' => 'En ligne',
     'join' => 'Rejoindre',
+    'discord_display_mode' => 'Mode du sous-texte Discord',
+    'discord_display_text' => 'Texte personnalisé',
+    'discord_display_url' => 'Afficher l\'URL Discord',
+    'discord_subtitle' => 'Sous-texte Discord',
     'amount_to_show' => 'Montant à afficher',
     'online_variable' => 'Utilisez {online} dans votre texte pour placer le nombre de connecté comme bon vous semble!',
     'link_of_your_server_on' => 'Lien de votre serveur sur <a href="https://www.serveurliste.com/" target="_blank" rel="noopener, nofollow">ServeurListe.com</a>',
@@ -49,7 +53,8 @@ return [
     'form' => [
         'hero' => [
             'discord_show_online' => 'Configurez plus bas votre ID Discord afin d\'afficher le nombre de connecté',
-            'discord_iframe' => 'Désolé vous ne pouvez pas utiliser {online} vous utilisez les paramètres du discord iframe.'
+            'discord_iframe' => 'Désolé vous ne pouvez pas utiliser {online} vous utilisez les paramètres du discord iframe.',
+            'discord_display_help' => 'Choisissez si le sous-texte affiche votre texte personnalisé ou l\'URL Discord.'
         ],
         'colors' => [
             'desc' => 'Mettez des couleurs bien visible et aléatoire pour avoir plus connaissances des couleurs qui changent',

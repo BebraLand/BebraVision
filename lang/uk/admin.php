@@ -34,12 +34,17 @@ return [
     'ip_when_copied' => 'Текст, коли айпі скопійовано',
     'online' => 'Онлайн',
     'join' => 'Приєднатись',
+    'discord_display_mode' => 'Режим підзаголовка Discord',
+    'discord_display_text' => 'Власний текст',
+    'discord_display_url' => 'Показувати URL Discord',
+    'discord_subtitle' => 'Підзаголовок Discord',
     'amount_to_show' => 'Сума для показу',
     'online_variable' => 'Використовуйте {online} у вашому тексті, щоб розмістити кількість гравців!',
     'form' => [
         'hero' => [
             'discord_show_online' => 'Налаштуйте свій Discord ID нижче, щоб відобразити кількість підключень, які ви маєте.',
-            'discord_iframe' => 'На жаль, ви не можете використовувати {online}, ви використовуєте налаштування iframe.'
+            'discord_iframe' => 'На жаль, ви не можете використовувати {online}, ви використовуєте налаштування iframe.',
+            'discord_display_help' => 'Оберіть, чи підзаголовок повинен показувати ваш текст або URL Discord.'
         ],
         'colors' => [
             'desc' => 'Додайте випадкові кольори, щоб мати більше знань про кольори, які змінюються',

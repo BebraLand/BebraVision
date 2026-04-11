@@ -1,5 +1,48 @@
 <div class="d-flex flex-column gap-3">
     <fieldset class="d-flex flex-column gap-3 border p-2 w-100 mb-3">
+        <legend class="float-none w-auto p-2 py-0 bg-dark text-white text-lg">{{trans('theme::admin.arrangement')}}</legend>
+        <div class="d-flex flex-column gap-2">
+            <small class="fw-bold">{{trans('theme::admin.component_order')}}</small>
+            <div class="d-flex gap-2 flex-wrap">
+                <div class="flex-fill">
+                    <label class="form-label m-0" for="hero-arrangement-first">{{trans('theme::admin.first_component')}}</label>
+                    <select class="form-select @error('hero-arrangement-first') is-invalid @enderror" id="hero-arrangement-first" name="hero[arrangement][first]">
+                        <option value="server" @if(old('hero-arrangement-first', config('theme.hero.arrangement.first', 'server')) == 'server') selected @endif>{{trans('theme::admin.server')}}</option>
+                        <option value="discord" @if(old('hero-arrangement-first', config('theme.hero.arrangement.first', 'server')) == 'discord') selected @endif>{{trans('theme::admin.discord')}}</option>
+                        <option value="logo" @if(old('hero-arrangement-first', config('theme.hero.arrangement.first', 'server')) == 'logo') selected @endif>Logo</option>
+                    </select>
+                    @error('hero-arrangement-first')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+                <div class="flex-fill">
+                    <label class="form-label m-0" for="hero-arrangement-second">{{trans('theme::admin.second_component')}}</label>
+                    <select class="form-select @error('hero-arrangement-second') is-invalid @enderror" id="hero-arrangement-second" name="hero[arrangement][second]">
+                        <option value="server" @if(old('hero-arrangement-second', config('theme.hero.arrangement.second', 'discord')) == 'server') selected @endif>{{trans('theme::admin.server')}}</option>
+                        <option value="discord" @if(old('hero-arrangement-second', config('theme.hero.arrangement.second', 'discord')) == 'discord') selected @endif>{{trans('theme::admin.discord')}}</option>
+                        <option value="logo" @if(old('hero-arrangement-second', config('theme.hero.arrangement.second', 'discord')) == 'logo') selected @endif>Logo</option>
+                    </select>
+                    @error('hero-arrangement-second')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+                <div class="flex-fill">
+                    <label class="form-label m-0" for="hero-arrangement-third">{{trans('theme::admin.third_component')}}</label>
+                    <select class="form-select @error('hero-arrangement-third') is-invalid @enderror" id="hero-arrangement-third" name="hero[arrangement][third]">
+                        <option value="server" @if(old('hero-arrangement-third', config('theme.hero.arrangement.third', 'logo')) == 'server') selected @endif>{{trans('theme::admin.server')}}</option>
+                        <option value="discord" @if(old('hero-arrangement-third', config('theme.hero.arrangement.third', 'logo')) == 'discord') selected @endif>{{trans('theme::admin.discord')}}</option>
+                        <option value="logo" @if(old('hero-arrangement-third', config('theme.hero.arrangement.third', 'logo')) == 'logo') selected @endif>Logo</option>
+                    </select>
+                    @error('hero-arrangement-third')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+            </div>
+            <small class="text-muted">{{trans('theme::admin.arrangement_description')}}</small>
+        </div>
+    </fieldset>
+
+    <fieldset class="d-flex flex-column gap-3 border p-2 w-100 mb-3">
         <legend class="float-none w-auto p-2 py-0 bg-dark text-white text-lg">{{trans('theme::admin.hide')}}</legend>
         <div class="form-check p-0">
             <div class="switcher">
@@ -88,6 +131,27 @@
                     @enderror
                 </div>
             </div>
+            <div class="d-flex gap-1">
+                <div class="w-100">
+                    <label class="form-label m-0" for="hero-discord-display">{{trans('theme::admin.discord_display_mode')}}</label>
+                    <select class="form-select @error('hero-discord-display') is-invalid @enderror" id="hero-discord-display" name="hero[discord][display]">
+                        <option value="text" @if(old('hero-discord-display', config('theme.hero.discord.display', 'text')) == 'text') selected @endif>{{trans('theme::admin.discord_display_text')}}</option>
+                        <option value="url" @if(old('hero-discord-display', config('theme.hero.discord.display', 'text')) == 'url') selected @endif>{{trans('theme::admin.discord_display_url')}}</option>
+                    </select>
+                    @error('hero-discord-display')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+                <div class="w-100">
+                    @php($discordSubtitleDefault = (config('theme.hero.discord.subtitle') && config('theme.hero.discord.subtitle') !== 'theme::theme.hero.discord_subtitle') ? config('theme.hero.discord.subtitle') : trans('theme::theme.hero.discord_subtitle'))
+                    <label class="form-label m-0" for="hero-discord-subtitle">{{trans('theme::admin.discord_subtitle')}}</label>
+                    <input type="text" class="form-control @error('hero-discord-subtitle') is-invalid @enderror" id="hero-discord-subtitle" name="hero[discord][subtitle]" value="{{old('hero-discord-subtitle', $discordSubtitleDefault)}}" aria-describedby="hero-discord-subtitle-Label">
+                    @error('hero-discord-subtitle')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                    @enderror
+                </div>
+            </div>
+            <small class="text-muted">{{trans('theme::admin.form.hero.discord_display_help')}}</small>
             <div>
                 <i>{{trans('theme::admin.online_variable')}}</i><strong class="{{theme_config('block.discord.type') == 'custom' ? 'd-none':''}} text-info ms-1">{{trans('theme::admin.form.hero.discord_iframe')}}</strong><br/>
                 <i class="fw-bold">{{trans('theme::admin.form.hero.discord_show_online')}}</i>

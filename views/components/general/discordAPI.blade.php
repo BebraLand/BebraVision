@@ -7,6 +7,8 @@
         function discordAPI() {
             let discord_key = "{{theme_config('block.discord.id') ?? 'placeholder'}}";
             let url = 'https://discordapp.com/api/guilds/' + discord_key + '/embed.json';
+            let enableKnownBotsFilter = {{ config('theme.knownBots.enabled') ? 'true' : 'false' }};
+            const knownBots = {!! json_encode(config('theme.knownBots.list') ?? []) !!};
             @if(!$onlyCounter)
                 let discordList = document.querySelector('.discord-list');
             @endif
@@ -25,15 +27,36 @@
                     }
                 @endif
                 response.json().then(function (d) {
+                    // Normalize bot names from admin textarea/string config into an array.
+                    const knownBotsList = Array.isArray(knownBots)
+                        ? knownBots
+                        : String(knownBots)
+                            .split(/\r?\n/)
+                            .map(name => name.trim())
+                            .filter(Boolean);
+
+                    // Use a filtered online count so configured bot names are not included.
+                    const filteredPresenceCount = d.members.filter(m =>
+                        !(enableKnownBotsFilter && knownBotsList.includes(m.username)) &&
+                        !/bot/i.test(m.username)
+                    ).length;
+
                     discordList_count.forEach(function(e) {
-                        e.innerText.includes('{online}') ? e.innerText = e.innerText.replace('{online}', d.presence_count):'';
+                        e.innerText.includes('{online}') ? e.innerText = e.innerText.replace('{online}', filteredPresenceCount):'';
                     });
+
+                    // Keep backward compatibility with {online}, but also support plain labels like "Online"
+                    // for the Discord block counter by prefixing the live presence count.
+                    document.querySelectorAll('.discord-online-count').forEach(function (e) {
+                        if (!e.innerText.includes('{online}')) {
+                            const label = e.innerText.trim();
+                            e.innerText = label.length > 0 ? `${filteredPresenceCount} ${label}` : `${filteredPresenceCount}`;
+                        }
+                    });
+
                     @if(!$onlyCounter)
                         // Exclude bots from the member list
                         // The Discord embed API does not provide a 'bot' property, so we filter by known bot names or if username contains 'bot'
-                        let enableKnownBotsFilter = {{ config('theme.knownBots.enabled') ? 'true' : 'false' }};
-                        const knownBots = {!! json_encode(config('theme.knownBots.list') ?? []) !!};
-                        
                         // Priority users configuration
                         let enablePriorityUsers = {{ config('theme.priorityUsers.enabled') ? 'true' : 'false' }};
                         const priorityUsers = {!! json_encode(config('theme.priorityUsers.list') ?? []) !!};
@@ -42,7 +65,7 @@
                         const priorityMembers = enablePriorityUsers ? d.members
                             .filter(m =>
                                 priorityUsers.includes(m.username) &&
-                                !(enableKnownBotsFilter && knownBots.includes(m.username)) &&
+                                !(enableKnownBotsFilter && knownBotsList.includes(m.username)) &&
                                 !/bot/i.test(m.username)
                             )
                             .sort((a, b) => {
@@ -55,7 +78,7 @@
                         const otherMembers = d.members
                             .filter(m =>
                                 !(enablePriorityUsers && priorityUsers.includes(m.username)) &&
-                                !(enableKnownBotsFilter && knownBots.includes(m.username)) &&
+                                !(enableKnownBotsFilter && knownBotsList.includes(m.username)) &&
                                 !/bot/i.test(m.username)
                             )
                             .sort((a,b)=> (a.status>b.status)*2-1);
