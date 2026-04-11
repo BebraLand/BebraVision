@@ -17,6 +17,7 @@
     <meta property="og:title" content="@yield('title')">
     <meta property="og:type" content="@yield('type', 'website')">
     <meta property="og:url" content="{{ url()->current() }}">
+    {{-- <meta property="og:image" content="{{ favicon() }}"> --}}
     <meta property="og:image" content="https://i.ibb.co/r7R5QHy/beaver-48437-1280.png">
     <meta property="og:description" content="@yield('description', setting('description', ''))">
     <meta property="og:site_name" content="{{ site_name() }}">
