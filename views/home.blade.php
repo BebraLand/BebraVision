@@ -3,6 +3,34 @@
 @section('title', trans('messages.home'))
 
 @section('app')
+    <style>
+        .twitch-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: calc(56.25% + 58px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #0e0e10;
+        }
+        @media (max-width: 750px) {
+            .twitch-wrapper { padding-top: calc(56.25% + 54px); }
+        }
+        @media (max-width: 430px) {
+            .twitch-wrapper { padding-top: calc(56.25% + 42px); }
+        }
+    </style>
+    <script>
+        window.addEventListener('message', function(event) {
+            const container = document.getElementById('twitch-container');
+            if (!container) return;
+            if (event.data && event.data.type === 'twitch-offline') {
+                container.style.display = 'none';
+            } else if (event.data && event.data.type === 'twitch-online') {
+                container.style.display = '';
+            }
+        });
+    </script>
     <div class="home-background d-flex align-items-center justify-content-end flex-column text-white pb-md-15 pb-3 " style="background: rgb(87,110,247);background: radial-gradient(circle, rgba(87,110,247,0) 6%, rgba(var(--bs-black-rgb),0.6) 98%),linear-gradient(rgba(18,23,37,0.79), rgba(var(--bs-light-rgb),0.8)),url('{{ setting('background') ? image_url(setting('background')) : 'https://via.placeholder.com/2000x500' }}') no-repeat center; background-size: cover">
 
         <div class="container d-flex flex-column flex-md-row justify-content-center align-items-center gap-md-4">
@@ -67,6 +95,16 @@
             @endforeach
 
         </div>
+        
+        @if(!theme_config('block.twitch.toggle') && theme_config('block.twitch.url') && (config('theme.block.twitch.location', 'top') == 'hero'))
+        <div class="container mt-4 mb-2">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="twitch-wrapper" style="box-shadow: 0 15px 40px rgba(0,0,0,0.6);">
+                    <iframe src="{{ theme_config('block.twitch.url') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 
     <div class="bg-body content">
@@ -152,25 +190,8 @@
                 </div>
             @endif
 
-            @if(!theme_config('block.twitch.toggle') && theme_config('block.twitch.url'))
-            <style>
-                .twitch-wrapper {
-                    position: relative;
-                    width: 100%;
-                    padding-top: calc(56.25% + 58px);
-                    border-radius: 12px;
-                    overflow: hidden;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-                    background: #0e0e10;
-                }
-                @media (max-width: 750px) {
-                    .twitch-wrapper { padding-top: calc(56.25% + 54px); }
-                }
-                @media (max-width: 430px) {
-                    .twitch-wrapper { padding-top: calc(56.25% + 42px); }
-                }
-            </style>
-            <div class="row py-4">
+            @if(!theme_config('block.twitch.toggle') && theme_config('block.twitch.url') && (config('theme.block.twitch.location', 'top') == 'top'))
+            <div class="row py-4" id="twitch-container" style="display:none;">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="twitch-wrapper">
                         <iframe src="{{ theme_config('block.twitch.url') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" frameborder="0" scrolling="no" allowfullscreen></iframe>
@@ -181,6 +202,15 @@
 
             <div class="row py-8">
                 <div class="col-md-3 p-0 order-2 order-md-1">
+                    @if(!theme_config('block.twitch.toggle') && theme_config('block.twitch.url') && (config('theme.block.twitch.location', 'top') == 'sidebar'))
+                    <div class="text-center mx-2 mb-4" id="twitch-container" style="display:none;">
+                        <h2 class="fs-3 text-uppercase">Twitch</h2>
+                        <div class="twitch-wrapper w-100 mx-auto">
+                            <iframe src="{{ theme_config('block.twitch.url') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                        </div>
+                        <hr>
+                    </div>
+                    @endif
                     @if(!theme_config('block.button.toggle'))
                         <div class="d-flex justify-content-center bg-dark text-center border-bottom-0 rounded-start py-5 mb-3 mx-md-0 mx-2">
                             <a href="{{theme_config('block.button.url') ?? '/shop'}}" @if(theme_config('block.button.blank') && theme_config('block.button.blank') == 'on') target="_blank" @endif class="d-flex justify-content-center gap-1 btn btn-secondary px-3 py-2 fs-3 text-decoration-none rounded fw-bolder text-nowrap"><i class="d-none d-lg-block {{theme_config('block.button.icon') ?? 'bi bi-arrow-right'}}"></i> {{theme_config('block.button.text') ?? 'Shop'}}</a>
@@ -254,6 +284,16 @@
                 </div>
             </div>
         </div>
+
+        @if(!theme_config('block.twitch.toggle') && theme_config('block.twitch.url') && (config('theme.block.twitch.location', 'top') == 'floating'))
+        <div class="twitch-floating" id="twitch-container" style="display:none; position: fixed; bottom: 20px; right: 20px; width: 350px; z-index: 1050; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
+            <!-- Close button for floating widget -->
+            <button onclick="this.parentElement.style.display='none'" style="position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; z-index: 1060; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; padding: 0;">✕</button>
+            <div class="twitch-wrapper">
+                <iframe src="{{ theme_config('block.twitch.url') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+        @endif
 
     </div>
 @endsection

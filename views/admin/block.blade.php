@@ -14,11 +14,24 @@
     </div>
     <div class=" w-100">
         <label class="form-label m-0" for="block-twitch-url">{{trans('theme::admin.url')}}</label>
-        <input type="text" placeholder="https://bebraland.duckdns.org/twitch-universal.html?channel=bebraland&muted=true&autoplay=true&blankWhenOffline=true" class="form-control @error('block-twitch-url') is-invalid @enderror" id="block-twitch-url" name="block[twitch][url]" value="{{old('block-twitch-url', config('theme.block.twitch.url'))}}" aria-describedby="block-twitch-url-Label">
+        <input type="text" placeholder="https://bebraland.duckdns.org/twitch-universal.html?channel=bebraland&muted=true&autoplay=true&blankWhenOffline=true&objectFit=cover" class="form-control @error('block-twitch-url') is-invalid @enderror" id="block-twitch-url" name="block[twitch][url]" value="{{old('block-twitch-url', config('theme.block.twitch.url'))}}" aria-describedby="block-twitch-url-Label">
         @error('block-twitch-url')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
-        <small class="form-text text-muted">Use the full embed URL with parameters like muted=true, autoplay=true, blankWhenOffline=true (equivalent to hidewhenoffline).</small>
+        <small class="form-text text-muted">Use the full embed URL with parameters like muted=true, autoplay=true, blankWhenOffline=true, objectFit=cover.</small>
+    </div>
+    <div class="form-group mt-2">
+        <label for="block-twitch-location" class="form-label fw-bold m-0">Twitch Player Location</label>
+        <div class="d-flex align-center">
+            <select class="form-select @error('block-twitch-location') is-invalid @enderror" id="block-twitch-location" name="block[twitch][location]">
+                <option value="top" @if(config('theme.block.twitch.location') == 'top') selected @endif>Top (Above News)</option>
+                <option value="sidebar" @if(config('theme.block.twitch.location') == 'sidebar') selected @endif>Sidebar</option>
+                <option value="floating" @if(config('theme.block.twitch.location') == 'floating') selected @endif>Floating Widget</option>
+            </select>
+        </div>
+        @error('block-twitch-location')
+        <small class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></small>
+        @enderror
     </div>
 </fieldset>
 <fieldset class="d-flex flex-column gap-3 border p-2 w-100">
