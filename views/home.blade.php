@@ -153,9 +153,28 @@
             @endif
 
             @if(!theme_config('block.twitch.toggle') && theme_config('block.twitch.url'))
+            <style>
+                .twitch-wrapper {
+                    position: relative;
+                    width: 100%;
+                    padding-top: calc(56.25% + 58px);
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                    background: #0e0e10;
+                }
+                @media (max-width: 750px) {
+                    .twitch-wrapper { padding-top: calc(56.25% + 54px); }
+                }
+                @media (max-width: 430px) {
+                    .twitch-wrapper { padding-top: calc(56.25% + 42px); }
+                }
+            </style>
             <div class="row py-4">
-                <div class="col-12">
-                    <iframe src="{{ theme_config('block.twitch.url') }}" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #0e0e10;"></iframe>
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="twitch-wrapper">
+                        <iframe src="{{ theme_config('block.twitch.url') }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
             @endif
