@@ -152,6 +152,14 @@
                 </div>
             @endif
 
+            @if(!theme_config('block.twitch.toggle') && theme_config('block.twitch.url'))
+            <div class="row py-4">
+                <div class="col-12">
+                    <iframe src="{{ theme_config('block.twitch.url') }}" width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #0e0e10;"></iframe>
+                </div>
+            </div>
+            @endif
+
             <div class="row py-8">
                 <div class="col-md-3 p-0 order-2 order-md-1">
                     @if(!theme_config('block.button.toggle'))

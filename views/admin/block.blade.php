@@ -1,4 +1,27 @@
 <fieldset class="d-flex flex-column gap-3 border p-2 w-100">
+    <legend class="float-none w-auto p-2 py-0 bg-dark text-white text-lg">Twitch Embed</legend>
+    <div class="form-check p-0">
+        <div class="switcher">
+            <small class="fw-bold fs-5">{{trans('theme::admin.dont_show')}}</small>
+            <label for="block-twitch-toggle">
+                <input type="checkbox" id="block-twitch-toggle" name="block[twitch][toggle]" @if(config('theme.block.twitch.toggle')) checked @endif @error('block-twitch-toggle') is-invalid @enderror/>
+                <span><small></small></span>
+            </label>
+        </div>
+        @error('block-twitch-toggle')
+        <small class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></small>
+        @enderror
+    </div>
+    <div class=" w-100">
+        <label class="form-label m-0" for="block-twitch-url">{{trans('theme::admin.url')}}</label>
+        <input type="text" placeholder="https://bebraland.duckdns.org/twitch-universal.html?channel=bebraland&muted=true&autoplay=true&blankWhenOffline=true" class="form-control @error('block-twitch-url') is-invalid @enderror" id="block-twitch-url" name="block[twitch][url]" value="{{old('block-twitch-url', config('theme.block.twitch.url'))}}" aria-describedby="block-twitch-url-Label">
+        @error('block-twitch-url')
+        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
+        <small class="form-text text-muted">Use the full embed URL with parameters like muted=true, autoplay=true, blankWhenOffline=true (equivalent to hidewhenoffline).</small>
+    </div>
+</fieldset>
+<fieldset class="d-flex flex-column gap-3 border p-2 w-100">
     <legend class="float-none w-auto p-2 py-0 bg-dark text-white text-lg">{{trans('theme::admin.news')}}</legend>
     <div class=" w-100">
         <label class="form-label m-0" for="block-news-title">{{trans('theme::admin.title')}}</label>
