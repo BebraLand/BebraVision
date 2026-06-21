@@ -10,4 +10,5 @@ return [
     'block' => ['nullable', 'array'],
     'knownBots' => ['nullable', 'array'],
     'priorityUsers' => ['nullable', 'array'],
+    'profile' => ['nullable', 'array'],
 ];
