@@ -86,6 +86,12 @@
         .btn-secondary,.btn-secondary i,.btn-secondary i:hover,.btn-secondary:hover,.btn-secondary:active,.btn-secondary:focus{
             color: var(--primary-btn);
         }
+        @if(!theme_config('profile.show_money', true))
+            /* Azuriom profile page: hide "Money: … points" only. */
+            #profile > h1 + .card .col-lx-10 > ul > li:nth-child(2) {
+                display: none;
+            }
+        @endif
     </style>
     @stack('styles')
     <style>
